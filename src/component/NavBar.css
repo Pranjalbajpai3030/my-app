@@ -1,0 +1,28 @@
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  color: white;
+}
+.navbar-nav .nav-item {
+  margin-left: 10px; 
+}
+
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::before {
+  width: calc(100% + 10px); 
+}
+.navbar-nav .nav-link {
+  padding: 10px 15px; /* Add padding around the nav links */
+}
