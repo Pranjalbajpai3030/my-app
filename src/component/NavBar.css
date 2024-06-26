@@ -26,3 +26,10 @@
 .navbar-nav .nav-link {
   padding: 10px 15px; /* Add padding around the nav links */
 }
+
+/* Add this to your NavBar.css file */
+@import url('https://fonts.googleapis.com/css2?family=Stream+BC&display=swap');
+
+.navbar-brand {
+  font-family: 'Stream BC', sans-serif;
+}
