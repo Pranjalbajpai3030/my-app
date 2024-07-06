@@ -1,5 +1,4 @@
 
-https://github.com/Pranjalbajpai3030/News_Express/assets/127866867/f3b43cab-6569-4122-9206-e53b2a06ec27
 # Project Title
 News Express
 
