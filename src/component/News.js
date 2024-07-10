@@ -51,9 +51,7 @@ const News = (props) => {
 
    return (
       <div className="container my-3">
-         <div className="container text-center mb-4">
-            <img src="logo.png" alt="Logo" className="img-fluid" style={{ maxWidth: '500px', marginTop: '70px' }} />
-         </div>
+         
 
          <h1 style={{ marginTop: '70px', marginBottom: '35px', color: '#3D5280', transition: 'color 0.5s ease', textAlign: 'center' }}>
             <span style={{ color: 'red' }}>{props.category}</span> Top News

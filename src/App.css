@@ -1,0 +1,43 @@
+/* App.css */
+.responsive-logo {
+    max-width: 100%;
+    height: auto;
+    margin-top: 100px;
+}
+
+@media (min-width: 1200px) {
+    .responsive-logo {
+        max-width: 300px;
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 100px;
+    }
+
+    .responsive-logo {
+        max-width: 80%;
+        margin: 0 auto;
+        margin-top: 100px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.2rem;
+        margin-top: 30px;
+        
+    }
+
+    .responsive-logo {
+        max-width: 70%;
+        margin-top: 100px;
+    }
+}
