@@ -33,3 +33,14 @@
 .navbar-brand {
   font-family: 'Stream BC', sans-serif;
 }
+.weather-widget {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.weather-info {
+  display: flex;
+  align-items: center;
+}
+
