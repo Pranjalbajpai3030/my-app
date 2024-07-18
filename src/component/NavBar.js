@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const NavBar = ({ setSearchQuery }) => {
   const [query, setQuery] = useState('');
-  const [weather, setWeather] = useState({ temp: '', icon: '' });
+  const [weather, setWeather] = useState({ city: '', temp: '', icon: '' });
 
   const debouncedSearch = debounce((query) => setSearchQuery(query), 500);
 
@@ -24,9 +24,10 @@ const NavBar = ({ setSearchQuery }) => {
           const response = await axios.get(
             `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=48ceb3e2568f56c11d131ba71baaeeb9`
           );
+          const { name: city } = response.data;
           const { temp } = response.data.main;
           const { icon } = response.data.weather[0];
-          setWeather({ temp, icon });
+          setWeather({ city, temp, icon });
         } catch (error) {
           console.error("Error fetching weather data:", error);
         }
@@ -37,7 +38,7 @@ const NavBar = ({ setSearchQuery }) => {
   }, []);
 
   return (
-    <div>
+    <div id="navbar">
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,12 +74,15 @@ const NavBar = ({ setSearchQuery }) => {
             <div className="weather-widget">
               {weather.temp && (
                 <div className="weather-info">
-                  <img
-                    src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-                    alt="weather icon"
-                    style={{ width: '40px', height: '40px' }}
-                  />
-                  <span style={{ color: 'white', marginLeft: '10px' }}>{weather.temp}°C</span>
+                  <div className="weather-city">{weather.city}</div>
+                  <div className="weather-temp">
+                    <img
+                      src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+                      alt="weather icon"
+                      className="weather-icon"
+                    />
+                    <span>{weather.temp}°C</span>
+                  </div>
                 </div>
               )}
             </div>
