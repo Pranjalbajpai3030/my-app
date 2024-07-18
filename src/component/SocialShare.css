@@ -1,0 +1,28 @@
+.social-share {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.social-button {
+  padding: 10px;
+  background-color: #7091e6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.social-button:hover {
+  background-color: rgb(37, 120, 209);
+}
+
+.social-button svg {
+  width: 20px;
+  height: 20px;
+}

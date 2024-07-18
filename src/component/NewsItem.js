@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SocialShare from './SocialShare';
+
 const NewsItem = (props) => {
     let { title, description, imageUrl, newsUrl, author, date, source } = props;
 
@@ -43,6 +45,8 @@ const NewsItem = (props) => {
                     <p className="card-text">{truncateText(description, 120)}</p>
                     <p className="card-text"><small className="text-body-secondary">By <span style={{ color: 'blue' }}>{author ? author : 'Unknown'}</span> on <span style={{ color: 'red' }}>{new Date(date).toGMTString()}</span></small></p>
                     <a rel='noreferrer' href={newsUrl} target='_blank' className="btn btn-sm btn-primary" style={{ backgroundColor: '#7091e6', color: '#fff' }}>Read More</a>
+                    <SocialShare articleUrl={newsUrl} articleTitle={title} />
+                   
                 </div>
             </div>
         </div>
