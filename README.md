@@ -30,6 +30,7 @@ News Express
 
 # Interface Video
 
-[![Interface Video](https://img.youtube.com/vi/193f3d05-76bd-4ee6-9fdc-f0c616eb4d8f/0.jpg)](https://github.com/Pranjalbajpai3030/News_Express/assets/127866867/193f3d05-76bd-4ee6-9fdc-f0c616eb4d8f)
 
-Click on the image to view the interface video.
+https://github.com/user-attachments/assets/3af9f690-70bb-41b1-bbf3-6689354979f7
+
+
