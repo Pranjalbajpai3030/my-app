@@ -16,13 +16,20 @@
   justify-content: center;
   width: 40px;
   height: 40px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .social-button:hover {
   background-color: rgb(37, 120, 209);
+  transform: scale(1.1);
 }
 
 .social-button svg {
   width: 20px;
   height: 20px;
+  transition: transform 0.3s;
+}
+
+.social-button:hover svg {
+  transform: scale(1.2);
 }

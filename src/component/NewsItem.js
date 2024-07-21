@@ -1,17 +1,26 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import SocialShare from './SocialShare';
+import './NewsItem.css';
 
 const NewsItem = (props) => {
     let { title, description, imageUrl, newsUrl, author, date, source } = props;
+    const [selectedLanguage, setSelectedLanguage] = useState('hi');
 
-    // Style for the card and image
+    const languages = [
+        { code: 'hi', name: 'Hindi' },
+        { code: 'bn', name: 'Bengali' },
+        { code: 'ta', name: 'Tamil' },
+        { code: 'te', name: 'Telugu' },
+        { code: 'kn', name: 'Kannada' },
+        { code: 'ml', name: 'Malayalam' },
+        // Add more Indian languages as needed
+    ];
+
     const cardStyle = {
         boxShadow: 'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset',
         height: '100%',
     };
 
-    // Function to truncate text
     const truncateText = (text, maxLength) => {
         if (text.length > maxLength) {
             return text.slice(0, maxLength) + '...';
@@ -20,15 +29,16 @@ const NewsItem = (props) => {
         }
     };
 
-    // Function to handle image size
     const handleImageSize = (url) => {
-        // Check if imageUrl exists and set default image if not
         if (!url) {
             return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR41XYebbtpJpTR0lQzBbn_TiFDp2lLMzZAgw&s";
         }
+        return url;
+    };
 
-        // Check if image is larger than desired size and crop
-        return url; // Add your logic here to handle image size
+    const handleReadMore = (url, lang) => {
+        const googleTranslateUrl = `https://translate.google.com/translate?hl=${lang}&sl=auto&tl=${lang}&u=${encodeURIComponent(url)}`;
+        window.open(googleTranslateUrl, '_blank');
     };
 
     return (
@@ -44,9 +54,27 @@ const NewsItem = (props) => {
                     <h5 className="card-title">{truncateText(title, 50)}</h5>
                     <p className="card-text">{truncateText(description, 120)}</p>
                     <p className="card-text"><small className="text-body-secondary">By <span style={{ color: 'blue' }}>{author ? author : 'Unknown'}</span> on <span style={{ color: 'red' }}>{new Date(date).toGMTString()}</span></small></p>
-                    <a rel='noreferrer' href={newsUrl} target='_blank' className="btn btn-sm btn-primary" style={{ backgroundColor: '#7091e6', color: '#fff' }}>Read More</a>
+                    <div className="read-more-container">
+                        <button
+                            onClick={() => handleReadMore(newsUrl, selectedLanguage)}
+                            className="read-more-button"
+                        >
+                            Read More
+                        </button>
+                        <div className="translate-section">
+                            <select className="translate-select" onChange={(e) => setSelectedLanguage(e.target.value)} value={selectedLanguage}>
+                                {languages.map((lang) => (
+                                    <option key={lang.code} value={lang.code}>
+                                        {lang.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <button className="translate-button" onClick={() => handleReadMore(newsUrl, selectedLanguage)}>
+                                Translate to {languages.find(lang => lang.code === selectedLanguage).name}
+                            </button>
+                        </div>
+                    </div>
                     <SocialShare articleUrl={newsUrl} articleTitle={title} />
-                   
                 </div>
             </div>
         </div>

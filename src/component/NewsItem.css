@@ -1,0 +1,43 @@
+.read-more-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; /* Adjust as needed */
+  }
+  
+  .read-more-button {
+    padding: 10px;
+    background-color: #7091e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .read-more-button:hover {
+    background-color: rgb(37, 120, 209);
+  }
+  
+  .translate-section {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; /* Spacing between "Read More" and dropdown */
+  }
+  
+  .translate-select {
+    padding: 5px;
+    margin-right: 10px; /* Space between dropdown and translate button */
+  }
+  
+  .translate-button {
+    padding: 10px;
+    background-color: #7091e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .translate-button:hover {
+    background-color: rgb(37, 120, 209);
+  }
+  

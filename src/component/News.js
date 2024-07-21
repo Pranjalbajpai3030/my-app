@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import truncate from 'truncate';
-import Spinner from './Spinner.js';
+import Spinner from './Spinner';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -15,19 +15,27 @@ const News = (props) => {
   useEffect(() => {
     document.title = `${props.searchQuery ? 'Search' : props.category} - News Express`;
     updateNews();
-  }, [props.searchQuery]);
+  }, [props.searchQuery, props.category, props.country]);
 
   const fetchMoreData = async () => {
     const nextPage = page + 1;
     const url = `https://newsapi.org/v2/${props.searchQuery ? `everything?q=${props.searchQuery}` : `top-headlines?country=${props.country}&category=${props.category}`}&apiKey=3027806966fc4a6daf7688dd944eef6f&page=${nextPage}&pageSize=${props.pageSize}`;
+    
+    console.log('Fetching URL:', url);
+    
     try {
-      let data = await fetch(url);
-      let parsedData = await data.json();
-      setArticles([...articles, ...parsedData.articles]);
-      setTotalResults(parsedData.totalResults);
+      let response = await fetch(url);
+      console.log('Response Status:', response.status);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      let data = await response.json();
+      setArticles([...articles, ...data.articles]);
+      setTotalResults(data.totalResults);
       setPage(nextPage);
     } catch (error) {
-      setError('Error fetching more news.');
+      setError(`Error fetching more news: ${error.message}`);
+      console.error('Fetching more news failed:', error);
     }
   };
 
@@ -36,17 +44,20 @@ const News = (props) => {
     const url = `https://newsapi.org/v2/${props.searchQuery ? `everything?q=${props.searchQuery}` : `top-headlines?country=${props.country}&category=${props.category}`}&apiKey=3027806966fc4a6daf7688dd944eef6f&page=${page}&pageSize=${props.pageSize}`;
     try {
       setLoading(true);
-      let data = await fetch(url);
+      let response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      let data = await response.json();
       props.setProgress(30);
-      let parsedData = await data.json();
-      props.setProgress(50);
-      setArticles(parsedData.articles);
-      setTotalResults(parsedData.totalResults);
+      setArticles(data.articles);
+      setTotalResults(data.totalResults);
       setLoading(false);
       props.setProgress(100);
     } catch (error) {
       setError('Error updating news.');
       setLoading(false);
+      console.error(error);
     }
   };
 
@@ -100,7 +111,7 @@ News.propTypes = {
   pageSize: PropTypes.number,
   category: PropTypes.string,
   setProgress: PropTypes.func.isRequired,
-  searchQuery: PropTypes.string
+  searchQuery: PropTypes.string,
 };
 
 export default News;
