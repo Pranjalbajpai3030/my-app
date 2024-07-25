@@ -1,4 +1,3 @@
-Here's an updated version of your project description for News Express, incorporating the new features such as the comments section and social sharing functionality:
 
 # Project Title
 News Express
